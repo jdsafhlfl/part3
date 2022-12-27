@@ -1,3 +1,4 @@
+const { response, request } = require('express')
 const express = require('express')
 const app = express()
 
@@ -26,6 +27,16 @@ let data = [
 
 app.get('/api/persons', (request, response) =>{
     response.json(data)
+})
+
+app.get('/info', (request, response)=>{
+    const str = 'Phonebook has info for '+data.length+' people \n' + Date()
+    console.log(str)
+    response.send('<p>Phonebook has info for '+data.length+' people</p>'+Date())
+})
+
+app.get('/favicon.ico', (request, response)=>{
+    response.status(200)
 })
 
 const PORT = 5001
