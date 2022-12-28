@@ -1,7 +1,27 @@
 POST http://localhost:5001/api/persons
 Content-Type: application/json
 
+# {
+#     "name":"",
+#     "number":""
+# }
+
+# {
+#     "name":"",
+#     "number":"112"
+# }
+
+# {
+#     "name":"Ada Lovelace",
+#     "number":""
+# }
+
 {
-    "name":"Moi!",
+    "name":"Arto Hellas",
     "number":"112"
 }
+
+# {
+#     "name":"Moi!",
+#     "number":"112"
+# }
