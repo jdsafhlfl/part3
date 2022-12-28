@@ -45,6 +45,13 @@ app.get('/api/persons/:id', (request, response) => {
     }
 })
 
+app.delete('/api/persons/:id', (request, response)=>{
+    const id = request.params.id
+    data = data.filter(p => p.id !== Number(id))
+
+    response.status(204).end()
+})
+
 app.get('/favicon.ico', (request, response) => {
     response.status(200)
 })
