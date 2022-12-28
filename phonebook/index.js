@@ -2,6 +2,8 @@ const { response, request } = require('express')
 const express = require('express')
 const app = express()
 
+app.use(express.json())
+
 let data = [
     {
         "id": 1,
@@ -50,6 +52,14 @@ app.delete('/api/persons/:id', (request, response)=>{
     data = data.filter(p => p.id !== Number(id))
 
     response.status(204).end()
+})
+
+app.post('/api/persons', (request, response)=>{
+    const random_id = Math.floor(Math.random()*100)+10
+    const new_person = request.body
+    new_person.id = random_id
+    data = data.concat(new_person)
+    response.json(data)
 })
 
 app.get('/favicon.ico', (request, response) => {
