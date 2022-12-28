@@ -1,0 +1,27 @@
+POST https://weiyi-phonebook.fly.dev/api/persons
+Content-Type: application/json
+
+# {
+#     "name":"",
+#     "number":""
+# }
+
+# {
+#     "name":"",
+#     "number":"112"
+# }
+
+# {
+#     "name":"Ada Lovelace",
+#     "number":""
+# }
+
+{
+    "name":"Arto Hellas2",
+    "number":"112"
+}
+
+# {
+#     "name":"Moi!",
+#     "number":"112"
+# }
