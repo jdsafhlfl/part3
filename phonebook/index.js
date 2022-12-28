@@ -4,8 +4,10 @@ const morgan = require('morgan')
 
 const app = express()
 
+morgan.token('add', function(request, response){return JSON.stringify({name:request.body.name, number:request.body.number})})
+
 app.use(express.json())
-app.use(morgan('tiny'))
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :add'))
 
 let data = [
     {
@@ -89,4 +91,6 @@ app.get('/favicon.ico', (request, response) => {
 })
 
 const PORT = 5001
-app.listen(PORT)
+app.listen(PORT, ()=>{
+    console.log("Server is running on PORT "+PORT)
+})
