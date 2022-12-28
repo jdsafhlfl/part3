@@ -25,17 +25,27 @@ let data = [
     }
 ]
 
-app.get('/api/persons', (request, response) =>{
+app.get('/api/persons', (request, response) => {
     response.json(data)
 })
 
-app.get('/info', (request, response)=>{
-    const str = 'Phonebook has info for '+data.length+' people \n' + Date()
+app.get('/info', (request, response) => {
+    const str = 'Phonebook has info for ' + data.length + ' people \n' + Date()
     console.log(str)
-    response.send('<p>Phonebook has info for '+data.length+' people</p>'+Date())
+    response.send('<p>Phonebook has info for ' + data.length + ' people</p>' + Date())
 })
 
-app.get('/favicon.ico', (request, response)=>{
+app.get('/api/persons/:id', (request, response) => {
+    const id = request.params.id
+    const singlePerson = data.find(p => p.id === Number(id))
+    if (singlePerson) {
+        response.json(singlePerson)
+    }else{
+        response.status(404).end()
+    }
+})
+
+app.get('/favicon.ico', (request, response) => {
     response.status(200)
 })
 
