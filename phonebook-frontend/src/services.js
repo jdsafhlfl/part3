@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const phoneNoteUrl = "http://localhost:5001/api/persons"
+const phoneNoteUrl = "/api/persons"
 
 const getPhonenote = ()=>{
     return axios.get(phoneNoteUrl)

@@ -10,6 +10,7 @@ morgan.token('add', function(request, response){return JSON.stringify({name:requ
 app.use(express.json())
 app.use(cors())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :add'))
+app.use(express.static('build'))
 
 let data = [
     {
