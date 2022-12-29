@@ -40,10 +40,3 @@ mongoose
                 })
             }
         })
-
-// Person.find({}).then(result =>{
-//     result.forEach(p => {
-//         console.log(p)
-//     })
-//     mongoose.connection.close()
-// })
