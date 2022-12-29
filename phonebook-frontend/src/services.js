@@ -14,12 +14,12 @@ const deletePhonenote = (id)=>{
     return axios.delete(phoneNoteUrl+'/'+id)
 }
 
-// const updatePhonenote = (id, newPerson) =>{
-//     return axios.put(phoneNoteUrl+'/'+id, newPerson)
-// }
+const updatePhonenote = (id, newPerson) =>{
+    return axios.put(phoneNoteUrl+'/'+id, newPerson)
+}
 
 
-// const phoneServices = {getPhonenote, addPhonenote, deletePhonenote, updatePhonenote}
-const phoneServices = {getPhonenote, addPhonenote, deletePhonenote}
+const phoneServices = {getPhonenote, addPhonenote, deletePhonenote, updatePhonenote}
+// const phoneServices = {getPhonenote, addPhonenote, deletePhonenote}
 
 export default phoneServices

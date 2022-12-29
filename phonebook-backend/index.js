@@ -80,6 +80,21 @@ app.post('/api/persons', (request, response) => {
     })
 })
 
+app.put('/api/persons/:id', (request, response, next)=>{
+    const new_person = request.body
+
+    const updatePerson = {
+        name: new_person.name,
+        number: new_person.number
+    }
+
+    Person.findByIdAndUpdate(request.params.id, updatePerson, {new:true})
+          .then(p => {
+            response.json(p)
+          })
+          .catch(error => next(error))
+})
+
 app.get('/favicon.ico', (request, response) => {
     response.status(200)
 })

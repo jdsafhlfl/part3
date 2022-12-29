@@ -42,6 +42,17 @@ const App = () => {
               },5000)
             })
         }
+        // const newPerson = { name: newName, number: newNumber }
+        // phoneServices.addPhonenote(newPerson)
+        //   .then(response => {
+        //     setPersons(persons.concat(newPerson))
+        //   })
+        //   .then(()=>{
+        //     setMessage("Added " + newName)
+        //     setTimeout(() =>{
+        //       setMessage('')
+        //     },5000)
+        //   })
       }
     } else {
       const newPerson = { name: newName, number: newNumber }
@@ -49,10 +60,12 @@ const App = () => {
         .then(response => {
           setPersons(persons.concat(newPerson))
         })
-      setMessage("Added " + newName)
-      setTimeout(() =>{
-        setMessage('')
-      },5000)
+        .then(()=>{
+          setMessage("Added " + newName)
+          setTimeout(() =>{
+            setMessage('')
+          },5000)
+        })
     }
     setNewName('')
     setNewNumber('')
@@ -69,13 +82,6 @@ const App = () => {
   const handleFilter = (event) => {
     setFilter(event.target.value)
   }
-
-  // const myDelay = (num) => {
-  //   let current = new Date().getTime()
-  //   for (let tmp = current; tmp < current + num; tmp++) {
-  //     tmp = new Date().getTime()
-  //   }
-  // }
 
   const filterPersons = persons.filter(p => p.name.toLowerCase().includes(filterName.toLowerCase()))
 
@@ -122,6 +128,7 @@ const Persons = (props) => {
 
   const deletePerson = (name) => {
     if (window.confirm("Delete " + name + "?")) {
+      // window.location.reload()
       const deletePerson = props.allPersons.find(p => p.name === name)
       const remainPerson = props.allPersons.filter(p => p.name !== name)
       phoneServices.deletePhonenote(deletePerson.id)
