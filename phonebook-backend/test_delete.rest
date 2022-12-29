@@ -1,1 +1,0 @@
-DELETE http://localhost:5001/api/persons/1
