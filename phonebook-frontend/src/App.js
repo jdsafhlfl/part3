@@ -65,6 +65,10 @@ const App = () => {
           setTimeout(() =>{
             setMessage('')
           },5000)
+          phoneServices.getPhonenote()
+          .then(response => {
+            setPersons(response.data)
+          })
         })
         .catch(error =>{
           setErrorMessage(error.response.data.error)

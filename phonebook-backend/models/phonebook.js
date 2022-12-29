@@ -20,7 +20,7 @@ const personSchema = new mongoose.Schema({
         minLength: 8,
         validate:{
             validator: function(phonenum){
-                return /\d{2,3}-\d+/.test(phonenum)
+                return /\b\d{2,3}-\d+/.test(phonenum)
             },
             message: 'format should be xx-xxxxxxxx or xxx-xxxxxxxx'
         }
