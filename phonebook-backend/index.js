@@ -24,17 +24,19 @@ app.get('/api/persons', (request, response) => {
 })
 
 app.get('/info', (request, response) => {
-    response.send('<p>Phonebook has info for ' + data.length + ' people</p>' + Date())
+    Person.find({}).then(persons =>{
+        response.send('<p>Phonebook has info for ' + persons.length + ' people</p>' + Date())
+    })
 })
 
 app.get('/api/persons/:id', (request, response) => {
-    const id = request.params.id
-    const singlePerson = data.find(p => p.id === Number(id))
-    if (singlePerson) {
-        response.json(singlePerson)
-    }else{
-        response.status(404).end()
-    }
+    Person.findById(request.params.id).then(p =>{
+        if(p){
+            response.json(p)
+        }else{
+            response.status(404).json({error: 'id not exists'})
+        }
+    })
 })
 
 app.delete('/api/persons/:id', (request, response)=>{
@@ -45,32 +47,24 @@ app.delete('/api/persons/:id', (request, response)=>{
 })
 
 app.post('/api/persons', (request, response)=>{
-    const random_id = Math.floor(Math.random()*100)+10
     const new_person = request.body
-    // console.log(new_person)
     if(!new_person.name && !new_person.number){
-        return response.status(400).json({
-            error:'content missing'
-        })
+        return response.status(400).json({error:'content missing'})
     }
-    if(!new_person.name){
-        return response.status(400).json({
-            error:'name missing'
-        })
+    else if(!new_person.name){
+        return response.status(400).json({error:'name missing'})
     }
-    if(!new_person.number){
-        return response.status(400).json({
-            error:'number missing'
-        })
+    else if(!new_person.number){
+        return response.status(400).json({error:'number missing'})
     }
-    if(data.find(p => p.name === new_person.name)){
-        return response.status(400).json({
-            error:'name must be unique'
-        })
-    }
-    new_person.id = random_id
-    data = data.concat(new_person)
-    response.json(data)
+
+    const addPerson = new Person({
+        name: new_person.name,
+        number: new_person.number
+    })
+    addPerson.save().then(p =>{
+        response.json(p)
+    })
 })
 
 app.get('/favicon.ico', (request, response) => {

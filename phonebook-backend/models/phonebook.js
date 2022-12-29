@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const url = process.env.URL
-console.log(url)
+// console.log(url)
 
 mongoose.connect(url)
         .then(result =>{
